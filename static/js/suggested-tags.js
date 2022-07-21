@@ -50,7 +50,6 @@ randArr = () => {
 // create tag buttons and cards
 randArr().forEach((i, index) => {
     let tagTitle = tagsList[i]
-    // console.log(i, index)
     fetch(buildUrl(tagTitle,1))
     .then((response) => response.json())
     .then((a) => {
@@ -82,6 +81,5 @@ $('#suggestions').append('<h4>Suggestions</h4>')
 
 // tag buttons click function
 $("body").on("click", "button#tag-btn", (e) => {
-    // console.log(e.target.value)
     processUrl(buildUrl(e.target.value, 1))
 })

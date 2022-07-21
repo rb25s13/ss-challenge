@@ -25,7 +25,6 @@ buildUrl = (q, page) => {
         urlWithParams.searchParams.append('q', q)
         urlWithParams.searchParams.append('resultsFormat', 'native')
         urlWithParams.searchParams.append('page', page)
-        // console.log('link built', urlWithParams.href)
         return urlWithParams.href
     }
 }
@@ -188,8 +187,6 @@ getResults = (data) => {
 
 }
 
-// testing processUrl func
-// processUrl(buildUrl('tops',1))
 
 
 ///////////////////////////////////////////////////////
@@ -209,7 +206,6 @@ buttons = (data) => {
 
 // query/search submit
 $('#query-submit').click(() => {
-    // validateForm()
     processUrl(buildUrl($("#query-term").val(),1))
 })
 

@@ -90,11 +90,18 @@ form#query-val {
 }
     /* item cards */
 .card-img-top {
-    width: 100%;
     max-height: 400px;
     border-top-left-radius: calc(1.25rem - 1px);
     border-top-right-radius: calc(1.25rem - 1px);
 }
+
+@media only screen and (max-width: 600px) {
+    .card-img-top {
+        border-top-left-radius: calc(1.25rem - 1px);
+        border-top-right-radius: calc(1.25rem - 1px);
+    }
+  }
+
 .card {
     position: relative;
     display: -webkit-box;

@@ -18,6 +18,19 @@ buildUrl = (q, page) => {
     return urlWithParams.href
 }
 
+// read JSON data and pass to getResults
+processUrl = (url) => {
+    // clear items-row
+    $('#items-row').html("")
+    // itemsRow.innerHTML=""
+    fetch(url)
+    .then((response) => response.json())
+    .then((data) => getResults(data))
+    .catch(error => {
+        console.log(error)
+    })
+}
+
 // read JSON pagination data
 pageCheck = (data) => {
     // get current page number
@@ -41,6 +54,9 @@ pageCheck = (data) => {
     }
     return pageObj
 }
+
+// for updating the cart qty
+let count = 0
 
 getResults = (data) => {
     console.log('get results func', data)
@@ -159,15 +175,9 @@ getResults = (data) => {
 
 }
 
-// testing url fetch
-let testUrl = buildUrl('jeans',1)
+// testing processUrl func
+processUrl(buildUrl('tops',1))
 
-fetch(testUrl)
-    .then((response) => response.json())
-    .then((data) => {
-        // console.log(data)
-        getResults(data)
-    })
 
 ///////////////////////////////////////////////////////
 // click/keypress functions ///////////////////////////
@@ -177,22 +187,10 @@ fetch(testUrl)
 buttons = (data) => {
     let queryVal = data.breadcrumbs[0].filterValue
     $('button#next-btn').unbind('click').bind('click', (i) =>{
-        // processUrl(buildUrl(queryVal, nextBtn.value))
-        fetch(buildUrl(queryVal, nextBtn.value))
-            .then((response) => response.json())
-            .then((data) => {
-                // console.log(data)
-                getResults(data)
-            })
+        processUrl(buildUrl(queryVal, nextBtn.value))
     })
     $('button#prev-btn').unbind('click').bind('click', (i) =>{
-        // processUrl(buildUrl(queryVal, prevBtn.value))
-        fetch(buildUrl(queryVal, prevBtn.value))
-        .then((response) => response.json())
-        .then((data) => {
-            // console.log(data)
-            getResults(data)
-        })
+        processUrl(buildUrl(queryVal, prevBtn.value))
     })
 }
 

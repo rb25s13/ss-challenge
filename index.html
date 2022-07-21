@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>PALACE</title>
+      <link rel="icon" href="https://img.icons8.com/windows/344/castle.png" type="image/gif" sizes="16x16">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+      <link rel="stylesheet" href="static/css/styles.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&family=Roboto+Slab:wght@900&display=swap" rel="stylesheet">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   </head>
+   <body>
+      <nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>                        
+               </button>
+               <a class="navbar-brand" href="./"><i><b>PALACE</b></i></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+               <ul class="nav navbar-nav">
+                  <li class="active"><a href="./">Home</a></li>
+               </ul>
+               <ul class="nav navbar-nav navbar-right">
+                  <li class="form-inline">
+                     <input type="search" id="query-term" name="search" placeholder="Search.." class="animated-search-form">
+                     <button class="btn btn-prime" type="submit" id="query-submit"><span class="glyphicon glyphicon-search"></span></button>
+                  </li>
+                  <li>
+                     <a href="#">
+                     <span class="glyphicon glyphicon-shopping-cart"></span>
+                     <b>(<span id="cart-qty">0</span>)</b>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <div class="jumbotron">
+         <div class="container text-center">
+            <h1>P A L A C E <b>BOUTIQUE</b></h1>
+            <br>
+            <div id="sugg-btns"></div>
+            <br>
+         </div>
+      </div>
+      <div class="container-fluid container bg-3 text-center" id="item-results"></div>
+      <br>
+      <div class="container-fluid container bg-3 text-center">
+         <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="row" id="suggestions">
+            </div>
+         </div>
+      </div>
+      <br><br>
+      <footer class="container-fluid text-center">
+         <p>Searchspring challenge</p>
+         <p>Dillon Carter - 2022</p>
+         <a href="./"><span class="glyphicon glyphicon-home"></span></a> |
+         <a href="https://github.com/rb25s13/ss-challenge"><span class="glyphicon glyphicon-console"></span></a>
+      </footer>
+      <script src="static/js/index.js"></script>
+   </body>
+</html>

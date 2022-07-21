@@ -16,6 +16,7 @@ h1, footer {
 del {
     font-weight: bold;
     color: #ba1a1a;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 a {
     color: #006b57;
@@ -44,6 +45,9 @@ footer p {
 }
 .nav li a span {
     color: #fff;
+}
+.form-inline input {
+    width: 80%;
 }
 a.navbar-brand i b {
     color:#fff;
@@ -93,6 +97,7 @@ form#query-val {
 
 @media only screen and (max-width: 600px) {
     .card-img-top {
+        max-height: fit-content;
         border-top-left-radius: calc(1.25rem - 1px);
         border-top-right-radius: calc(1.25rem - 1px);
     }
@@ -189,5 +194,8 @@ button:hover, button:focus, button#tag-btn:hover {
 #suggestions button:hover {
     background-color: rgba(203,237,215,0.75);
     color:#000
+}
+#sugg-btns {
+    font-family: 'Roboto Condensed', sans-serif;
 }
 

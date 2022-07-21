@@ -1,5 +1,8 @@
 ////// js by dillon carter
 
+const nextBtn = $('#next-btn')
+const prevBtn = $('#prev-btn')
+
 // hide next and prev buttons as default
 $('button#prev-btn').css('display','none')
 $('button#next-btn').css('display','none')
@@ -44,7 +47,7 @@ getResults = (data) => {
     console.log('page check func', pageCheck(data))
     $('#item-results').html('')
     $('#item-results').append(`
-        <h3 id="results" href="#results"></h3><br>
+        <h3 id="results" href="#results"></h3>
         <div class="col-lg-12 col-md-12" id="items-container">
         <div class="text-center" id="page-num"></div>
         <div class="text-right" id="prevNextBtns">
@@ -79,6 +82,16 @@ getResults = (data) => {
     else { 
         $('#page-num').css('display', '')
     }
+
+    // fills search bar with query value
+    $("#query-term").val(data.breadcrumbs[0].filterValue) 
+    // display title and page number of qeury
+    $('#results').text(data.breadcrumbs[0].filterValue)
+    $('#page-num').text(`Page ${data.pagination.currentPage}`)
+
+    // set values of prev & next buttons
+    nextBtn.value=pageCheck(data).nextPage
+    prevBtn.value=pageCheck(data).prevPage
 
 }
 

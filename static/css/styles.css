@@ -1,0 +1,185 @@
+    /* css by dillon carter */
+
+    /* main elements */
+body {
+    height: 100vh;
+    background: repeating-linear-gradient(
+        to right,
+        #f8faf7 0px,
+        #fff 20px,
+        #fff 20px,
+        #fff 40px);
+}
+h1, footer {
+    color: #416277;
+}
+del {
+    font-weight: bold;
+    color: #ba1a1a;
+}
+a {
+    color: #006b57;
+}
+footer {
+    position:sticky;
+    top: 100%;
+    width: 100%;
+    background-color: rgba(243,255,249,0.55);
+    padding: 25px;
+}
+footer p {
+    font-family: 'Courier New', Courier, monospace;
+}
+    /* nav bar and search bar */
+.navbar {
+    margin-bottom: 0px;
+    border-radius: 0px;
+    border: none;
+}
+.navbar-inverse {
+    background-color: #006b57;
+}
+.nav li a span {
+    color: #fff;
+}
+a.navbar-brand i b {
+    color:#fff;
+    font-family: 'Roboto Slab', sans-serif;
+}
+.navbar-inverse .navbar-nav>.active>a, #myNavbar > ul.nav.navbar-nav.navbar-right > li > a:hover, body > nav > div > div.navbar-header > a:hover {
+    background-color: #005141;
+}
+.form-inline {
+    padding: 0px 10px;
+}
+.search-form{
+    border: 0.125rem solid #e6e6e6;
+    box-shadow: 0 0 3.125rem rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    padding: 0.75rem 1.25rem 0.75rem 2rem;
+    line-height: normal;
+    margin-top: 3%;
+}  
+#query-submit {
+    border-radius: 20px;
+    box-shadow: 0 0 3.125rem rgba(0, 0, 0, 0.05);
+}
+form#query-val {
+    margin: 1.5rem;
+}
+    /* jumbotron */
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: #f3e7ce;
+}
+.jumbotron h1 {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #416277;
+    width: 100%;
+}
+.jumbotron p {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.25rem;
+}
+    /* item cards */
+.card-img-top {
+    width: 100%;
+    height: 75%;
+    border-top-left-radius: calc(1.25rem - 1px);
+    border-top-right-radius: calc(1.25rem - 1px);
+}
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: calc(2.25rem - 1px);
+}  
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem;
+    background-color: #f3fff9;
+    border-bottom-left-radius: calc(2.25rem - 1px);
+    border-bottom-right-radius: calc(2.25rem - 1px);
+}
+.card-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    /* font-weight: bold; */
+    font-size: 2rem;
+    text-size-adjust: 2em;
+    margin: 0;
+    height: 60px;
+  }
+.card-img-top {
+    border-top-left-radius: calc(2.25rem - 1px);
+    border-top-right-radius: calc(2.25rem - 1px);
+}
+.card-text {
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+.card-body button {
+    width: 100%;
+}
+    /* buttons */
+.btn-prime {
+    color: #fff;
+    background-color: #006b57;
+    border: 0.125rem solid #e6e6e6;
+    border-radius: 20px;
+    box-shadow: 0 0 3.125rem rgba(0, 0, 0, 0.05);
+}
+.btn-prime:hover {
+    background-color: rgba(0, 107, 87, 0.75);
+}
+.btn-tag {
+    color: #006b57;
+    background-color: #f3fff9; /*  */
+    border: 0.125rem solid #e6e6e6;
+    border-radius: 20px;
+    box-shadow: 0 0 3.125rem rgba(0, 0, 0, 0.05);
+    margin: 0.5rem 0rem;
+}
+.btn-tag:hover {
+    background-color: rgba(243,255,249,0.75);
+}
+button:hover, button:focus, button#tag-btn:hover {
+    outline: none;
+    color: -50%;
+}  
+    /* suggestions tags and cards */
+#results, #suggestions h4 {
+    font-family: 'Roboto Slab', sans-serif;
+    text-transform: capitalize;
+    font-size: 4rem;
+    padding: 1rem;
+}
+#suggestions .card-body {
+    background-color: #f3e7ce6b;
+    color: #006b57;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 2rem;
+}
+#suggestions button {
+    background-color: #cbedd7;
+    color:#000
+}
+#suggestions button:hover {
+    background-color: rgba(203,237,215,0.75);
+    color:#000
+}

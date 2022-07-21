@@ -11,12 +11,42 @@ buildUrl = (q, page) => {
     return urlWithParams.href
 }
 
+// read JSON pagination data
+pageCheck = (data) => {
+    // get current page number
+    let curPage = data.pagination.currentPage
+    // check page number for prev/next buttons
+    // hide prev & next on first & last pages respectively
+    if (curPage === data.pagination.totalPages) {
+        $('button#prev-btn').css('display','')
+        $('button#next-btn').css('display','none')
+    } else if (curPage == 1 || curPage == 0) {
+        $('button#next-btn').css('display','')
+        $('button#prev-btn').css('display','none')
+    } else {
+        $('button#prev-btn').css('display','')
+        $('button#next-btn').css('display','')
+    }
+    // object to hold prev & next page numbers
+    var pageObj = {
+        prevPage: curPage-1,
+        nextPage: curPage+1
+    }
+    console.log(data.pagination)
+    return pageObj
+}
+
 // testing url fetch
-let testUrl = buildUrl('jeans',1)
+let testUrl = buildUrl('jeans',2)
 
 fetch(testUrl)
     .then((response) => response.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+        console.log(data)
+        console.log(pageCheck(data))
+    })
+
+
 
 
 // testing prev, next buttons

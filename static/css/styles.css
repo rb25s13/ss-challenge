@@ -84,10 +84,6 @@ form#query-val {
     width: 100%;
     padding-top: 60px;
 }
-.jumbotron p {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 1.25rem;
-}
     /* item cards */
 .card-img-top {
     max-height: 400px;

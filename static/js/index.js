@@ -25,7 +25,7 @@ buildUrl = (q, page) => {
         urlWithParams.searchParams.append('q', q)
         urlWithParams.searchParams.append('resultsFormat', 'native')
         urlWithParams.searchParams.append('page', page)
-        console.log('link built', urlWithParams.href)
+        // console.log('link built', urlWithParams.href)
         return urlWithParams.href
     }
 }

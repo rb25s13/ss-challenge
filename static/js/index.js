@@ -165,7 +165,7 @@ getResults = (data) => {
         let card = `
             <div class="col-sm-4">
                 <div class="card">
-                    <img class="card-img-top" src="${i.thumbnailImageUrl}" alt="${i.name}" onerror="this.onerror=null;this.src='https://via.placeholder.com/220x330.png?text=no+image+available'">
+                    <img class="card-img-top" src="${i.thumbnailImageUrl}" alt="${i.name}" onerror="this.onerror=null;this.src='https://via.placeholder.com/270x400.png?text=no+image+available'">
                     <div class="card-body">
                         <h5 class="align-middle card-title">${i.name}</h5>
                         ${pricesRow}
@@ -222,6 +222,6 @@ $('#query-term').keypress((e) => {
 
 // scroll to results header when results are generated
 scrollToTop = () => {
-    $('html,body').animate({scrollTop: $($('#sugg-btns')).offset().top})
+    $('html,body').animate({scrollTop: $($('#sugg-btns')).offset().top +70})
 }
 

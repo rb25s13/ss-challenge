@@ -63,7 +63,7 @@ randArr().forEach((i, index) => {
             let suggCard = `
             <div class="col-sm-3">
             <div class="card">
-                <img class="card-img-top" src="${a.results[0].thumbnailImageUrl}" alt="${tagTitle}" onerror="this.onerror=null;this.src='https://via.placeholder.com/220x330.png?text=no+image+available'">
+                <img class="card-img-top" src="${a.results[0].thumbnailImageUrl}" alt="${tagTitle}" onerror="this.onerror=null;this.src='https://via.placeholder.com/270x400.png?text=no+image+available'">
                 <div class="card-body">
                 ${tagTitle}
                 <button class="btn btn-tag glyphicon glyphicon-search tag-btn" id="tag-btn" value="${tagTitle}"></button>

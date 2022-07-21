@@ -98,6 +98,65 @@ getResults = (data) => {
     // to build url when clicked
     buttons(data)
 
+    // var to hold cards
+    let cards = ''
+
+    // loop through results to build card
+    data.results.forEach((i) => {
+        // console.log(data)
+        let msrp = Number(i.msrp)
+        let price = Number(i.price)
+
+        // if has msrp and is higher than price, display msrp crossed out
+        if (msrp != "" & msrp > price) {
+            // format to .00 if there is a decimal
+            if (price % 1 != 0) {
+                price = price.toFixed(2)
+            }
+            if (msrp % 1 != 0) {
+                msrp = msrp.toFixed(2)
+            }
+            // html for msrp and price
+            var pricesRow = `
+                <span class="prices-row">
+                    <del>$${msrp}</del>
+                    <span class="card-text">$${price}</span>
+                </span>
+            `
+        } else {
+            // html for price
+            var pricesRow = `
+            <span class="prices-row">
+                <span class="card-text">$${price}</span>
+            </span>
+            `
+        }
+        // html for the item card
+        // display using thumbnailImageUrl, name, price
+        let card = `
+            <div class="col-sm-4">
+                <div class="card">
+                    <img class="card-img-top" src="${i.thumbnailImageUrl}" alt="${i.name}" onerror="this.onerror=null;this.src='https://via.placeholder.com/220x330.png?text=no+image+available'">
+                    <div class="card-body">
+                        <h5 class="align-middle card-title">${i.name}</h5>
+                        ${pricesRow}
+                        <button class="btn btn-prime add-to-cart"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+                    </div>
+                </div><br>
+            </div>
+        `
+        // add card to cards
+        cards+=card
+
+    })
+    // add cards to items-row
+    $('#items-row').html(cards)
+
+    // update cart qty when add to cart button clicked
+    $('.add-to-cart').click(() => {
+        $('#cart-qty').text(count+=1)
+    })
+
 }
 
 // testing url fetch

@@ -1,4 +1,4 @@
-////// js by dillon carter
+////// index js by dillon carter
 
 const nextBtn = $('#next-btn')
 const prevBtn = $('#prev-btn')
@@ -9,20 +9,31 @@ $('button#next-btn').css('display','none')
 
 // build url using query value and page number
 buildUrl = (q, page) => {
-    const urlWithParams = new URL('https://api.searchspring.net/api/search/search.json')
-    urlWithParams.searchParams.append('siteId', 'scmq7n')
-    urlWithParams.searchParams.append('q', q)
-    urlWithParams.searchParams.append('resultsFormat', 'native')
-    urlWithParams.searchParams.append('page', page)
-    console.log('link built', urlWithParams.href)
-    return urlWithParams.href
+
+    if (q == "" || q == null) {
+        $('#item-results').html('')
+        $('#item-results').html(
+            `
+            <h3>No results for "${q}". Please try a different search term<h3>
+            `
+        )
+        alert("Please enter valid search term")
+        return 0
+    } else {
+        const urlWithParams = new URL('https://api.searchspring.net/api/search/search.json')
+        urlWithParams.searchParams.append('siteId', 'scmq7n')
+        urlWithParams.searchParams.append('q', q)
+        urlWithParams.searchParams.append('resultsFormat', 'native')
+        urlWithParams.searchParams.append('page', page)
+        console.log('link built', urlWithParams.href)
+        return urlWithParams.href
+    }
 }
 
 // read JSON data and pass to getResults
 processUrl = (url) => {
     // clear items-row
     $('#items-row').html("")
-    // itemsRow.innerHTML=""
     fetch(url)
     .then((response) => response.json())
     .then((data) => getResults(data))
@@ -33,24 +44,26 @@ processUrl = (url) => {
 
 // read JSON pagination data
 pageCheck = (data) => {
-    // get current page number
-    let curPage = data.pagination.currentPage
+    // object to hold page data
+    var pageObj = {
+        curPage: data.pagination.currentPage,
+        prevPage: data.pagination.previousPage,
+        nextPage: data.pagination.nextPage,
+        totalPages: data.pagination.totalPages,
+        totalResults: data.pagination.totalResults,
+        filterValue: data.breadcrumbs[0].filterValue
+    }
     // check page number for prev/next buttons
     // hide prev & next on first & last pages respectively
-    if (curPage === data.pagination.totalPages) {
+    if (pageObj.curPage == pageObj.totalPages) {
         $('button#prev-btn').css('display','')
         $('button#next-btn').css('display','none')
-    } else if (curPage == 1 || curPage == 0) {
+    } else if (pageObj.curPage == 1 || pageObj.curPage == 0) {
         $('button#next-btn').css('display','')
         $('button#prev-btn').css('display','none')
     } else {
         $('button#prev-btn').css('display','')
         $('button#next-btn').css('display','')
-    }
-    // object to hold prev & next page numbers
-    var pageObj = {
-        prevPage: curPage-1,
-        nextPage: curPage+1
     }
     return pageObj
 }
@@ -81,15 +94,14 @@ getResults = (data) => {
     scrollToTop()
     
     // display 'no results' if there are none
-    if (data.pagination.totalResults == 0) {
-        // $('#results').html("")
-        // $('#items-container').html("")
+    if (pageCheck(data).totalResults == 0 || pageCheck(data).filterValue == null) {
+        $('#items-container').html("")
         $('button#prev-btn').css('display','none')
         $('button#next-btn').css('display','none')
         $('#page-num').css('display', 'none')
         $('#results').html(
             `
-            <h3>No results for ${data.breadcrumbs[0].filterValue}<h3>
+            <h3>No results for "${pageCheck(data).filterValue}".<h3> Please try a different search term
             `
         )
         return
@@ -99,10 +111,10 @@ getResults = (data) => {
     }
 
     // fills search bar with query value
-    $("#query-term").val(data.breadcrumbs[0].filterValue) 
+    $("#query-term").val(pageCheck(data).filterValue) 
     // display title and page number of qeury
-    $('#results').text(data.breadcrumbs[0].filterValue)
-    $('#page-num').text(`Page ${data.pagination.currentPage}`)
+    $('#results').text(pageCheck(data).filterValue)
+    $('#page-num').text(`Page ${pageCheck(data).curPage}`)
 
     // set values of prev & next buttons
     nextBtn.value=pageCheck(data).nextPage
@@ -184,7 +196,7 @@ getResults = (data) => {
 
 // prev & next buttons
 buttons = (data) => {
-    let queryVal = data.breadcrumbs[0].filterValue
+    let queryVal = pageCheck(data).filterValue
     $('button#next-btn').unbind('click').bind('click', (i) =>{
         processUrl(buildUrl(queryVal, nextBtn.value))
     })
@@ -195,6 +207,7 @@ buttons = (data) => {
 
 // query/search submit
 $('#query-submit').click(() => {
+    // validateForm()
     processUrl(buildUrl($("#query-term").val(),1))
 })
 
@@ -209,3 +222,4 @@ $('#query-term').keypress((e) => {
 scrollToTop = () => {
     $('html,body').animate({scrollTop: $($('#sugg-btns')).offset().top})
 }
+

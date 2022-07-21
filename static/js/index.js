@@ -83,7 +83,9 @@ getResults = (data) => {
             <button class="btn btn-prime next-btn" id="next-btn">Next</button>
         </div>
         <br>
-        <div class="row" id="items-row"></div>
+        <div class="row justify-content-start">
+            <div class="col-lg-12 col-md-12" id="items-row"></div>
+        </div>
         <br>
         <div class="text-right" id="prevNextBtns">
             <button class="btn btn-prime prev-btn" id="prev-btn">Previous</button>

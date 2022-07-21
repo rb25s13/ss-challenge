@@ -9,7 +9,7 @@ $('button#next-btn').css('display','none')
 
 // build url using query value and page number
 buildUrl = (q, page) => {
-    const urlWithParams = new URL('http://api.searchspring.net/api/search/search.json')
+    const urlWithParams = new URL('https://api.searchspring.net/api/search/search.json')
     urlWithParams.searchParams.append('siteId', 'scmq7n')
     urlWithParams.searchParams.append('q', q)
     urlWithParams.searchParams.append('resultsFormat', 'native')
@@ -93,6 +93,11 @@ getResults = (data) => {
     nextBtn.value=pageCheck(data).nextPage
     prevBtn.value=pageCheck(data).prevPage
 
+    // call buttons function
+    // pass in data for buttons
+    // to build url when clicked
+    buttons(data)
+
 }
 
 // testing url fetch
@@ -105,7 +110,32 @@ fetch(testUrl)
         getResults(data)
     })
 
+///////////////////////////////////////////////////////
+// click/keypress functions ///////////////////////////
+///////////////////////////////////////////////////////
 
+// prev & next buttons
+buttons = (data) => {
+    let queryVal = data.breadcrumbs[0].filterValue
+    $('button#next-btn').unbind('click').bind('click', (i) =>{
+        // processUrl(buildUrl(queryVal, nextBtn.value))
+        fetch(buildUrl(queryVal, nextBtn.value))
+            .then((response) => response.json())
+            .then((data) => {
+                // console.log(data)
+                getResults(data)
+            })
+    })
+    $('button#prev-btn').unbind('click').bind('click', (i) =>{
+        // processUrl(buildUrl(queryVal, prevBtn.value))
+        fetch(buildUrl(queryVal, prevBtn.value))
+        .then((response) => response.json())
+        .then((data) => {
+            // console.log(data)
+            getResults(data)
+        })
+    })
+}
 
     
     

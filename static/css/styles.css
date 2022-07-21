@@ -35,6 +35,9 @@ footer p {
     margin-bottom: 0px;
     border-radius: 0px;
     border: none;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
 }
 .navbar-inverse {
     background-color: #006b57;
@@ -79,6 +82,7 @@ form#query-val {
     font-family: 'Roboto Condensed', sans-serif;
     color: #416277;
     width: 100%;
+    padding-top: 60px;
 }
 .jumbotron p {
   font-family: 'Courier New', Courier, monospace;

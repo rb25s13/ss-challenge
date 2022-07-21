@@ -59,11 +59,10 @@ pageCheck = (data) => {
 let count = 0
 
 getResults = (data) => {
-    console.log('get results func', data)
-    console.log('page check func', pageCheck(data))
+    // add query header, results row and prev/next buttons
     $('#item-results').html('')
     $('#item-results').append(`
-        <h3 id="results" href="#results"></h3>
+        <h3 id="results"></h3>
         <div class="col-lg-12 col-md-12" id="items-container">
         <div class="text-center" id="page-num"></div>
         <div class="text-right" id="prevNextBtns">
@@ -79,8 +78,8 @@ getResults = (data) => {
         </div>
         </div>
     `)
-    pageCheck(data)
-
+    scrollToTop()
+    
     // display 'no results' if there are none
     if (data.pagination.totalResults == 0) {
         // $('#results').html("")
@@ -90,7 +89,7 @@ getResults = (data) => {
         $('#page-num').css('display', 'none')
         $('#results').html(
             `
-            <h3 id="results">No results for ${data.breadcrumbs[0].filterValue}<h3>
+            <h3>No results for ${data.breadcrumbs[0].filterValue}<h3>
             `
         )
         return
@@ -119,7 +118,7 @@ getResults = (data) => {
 
     // loop through results to build card
     data.results.forEach((i) => {
-        // console.log(data)
+        
         let msrp = Number(i.msrp)
         let price = Number(i.price)
 
@@ -176,7 +175,7 @@ getResults = (data) => {
 }
 
 // testing processUrl func
-processUrl(buildUrl('tops',1))
+// processUrl(buildUrl('tops',1))
 
 
 ///////////////////////////////////////////////////////
@@ -194,6 +193,19 @@ buttons = (data) => {
     })
 }
 
-    
-    
+// query/search submit
+$('#query-submit').click(() => {
+    processUrl(buildUrl($("#query-term").val(),1))
+})
 
+// keypress function for enter key
+$('#query-term').keypress((e) => {
+    if (e.which ==13) {
+        processUrl(buildUrl(e.target.value,1))
+    }
+})
+
+// scroll to results header when results are generated
+scrollToTop = () => {
+    $('html,body').animate({scrollTop: $($('#sugg-btns')).offset().top})
+}
